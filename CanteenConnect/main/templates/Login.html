@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
+
 <h1>Login</h1><br/><br/>
-    <form role="form">
+
+{% if error %}
+{{ error }}
+<br/>
+{% endif %}
+
+
+    <form method = "POST" action ="{% url 'login' %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="username" class="form-control-label"><span class="required-label">*</span> Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter Username" required>
+            <input type="text" class="form-control" name = "username" required>
         </div>
     
         <div class="form-group">
             <label for="exampleInputPassword" class="form-control-label"><span class="required-label">*</span> Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" required>
+            <input type="password" class="form-control" name = "password" required>
         </div>
     
         <button type="submit" class="btn btn-primary">Submit</button>
