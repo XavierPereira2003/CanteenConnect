@@ -55,7 +55,7 @@ ROOT_URLCONF = "CanteenConnect.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['static/main/templates/',],
+        "DIRS": ['static/main/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
