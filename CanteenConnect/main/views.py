@@ -9,13 +9,18 @@ def login(request):
         user = authenticate(username=request.POST['username'],password = request.POST['password'])
         if user is not None:
             auth.login(request,user)
-            return redirect('home')
+            if user.groups.filter(name='chef').exists():
+                return redirect('home_c')
+            return redirect('home_s')
         else:
             return render (request,'login.html', {'error':'Username or password is incorrect!'})
     else:
         return render(request,'login.html')
 
 @login_required
-def home(request):
-    return render(request,'home.html',{})
+def student_home(request):
+    return render(request,'student_home.html',{})
 
+@login_required
+def chef_home(request):
+    return render(request,'chef_home.html',{})
