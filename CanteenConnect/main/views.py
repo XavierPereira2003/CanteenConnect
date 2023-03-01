@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
@@ -21,7 +21,8 @@ def login(request): #allows user to log into site is capable of diffrentiating b
                 return redirect('home_c')
             return redirect('home_s')
         else:
-            return render (request,'login.html', {'error':'Username or password is incorrect!'})#Redirects if error is present
+            messages.error(request,'Username or Password Incorrect.')
+            return render (request,'login.html')#Redirects if error is present
     else:
         return render(request,'login.html')#Not sure what this is for
 
