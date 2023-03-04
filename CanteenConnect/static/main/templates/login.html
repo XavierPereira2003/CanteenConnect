@@ -11,11 +11,19 @@
 </head>
 
 <body>
+  {% for message in messages %}
+  <script>
+    alert('{{message}}')
+  </script>
+  {% endfor %}
+
+
   <!-- partial:index.partial.html -->
   <div id="bg"></div>
 
   <form method = "POST" action ="{% url 'login' %}">
     {% csrf_token %}
+
     <div class="form-field">
       <input type="text" class="form-control" placeholder="Username" name = "username" required />
     </div>
@@ -31,5 +39,4 @@
   <!-- partial -->
 
 </body>
-
 </html>
