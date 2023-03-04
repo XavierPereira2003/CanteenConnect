@@ -1,2 +1,3 @@
-.gitignore
-/virt/**
+*.gitignore
+\virt\**
+CanteenConnect\db.sqlite3
