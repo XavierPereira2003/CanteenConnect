@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+
+    .c {
+      text-align: center;
+    }
+
+    html {
+      background-image: url("/static/main/img/backchef.jfif");
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li><a href="#Chef">Chef</a></li>
+    <li><a href="{% url 'home_c' %}">Result</a></li>
+    <li><a href="{% url 'home_c_s' %}">Select</a></li>
+    <li style="float:right"><a class="active" href="{% url 'logout' %}">Logout</a></li>
+  </ul>
+  <div class="c">
+    <h1 font="120">CREATE MENU FOR :</h1>
+    <form action=C:\\Users\\MITHUN\\python\\helperrr.html>
+
+      <input type="date" id="birthday" name="birthday">
+      <br>
+
+
+      <label>Text box .1</label><br>
+      <input type="text" id="fname" name="fname"><br>
+      <label>Text box .2</label><br>
+      <input type="text" id="fname" name="fname"><br>
+      <label>Text box .3</label><br>
+      <input type="text" id="lname" name="lname"><br>
+      <label>Text box .4</label><br>
+      <input type="text" id="lname" name="lname"><br>
+      <label>Text box .5</label><br>
+      <input type="text" id="lname" name="lname"><br>
+      <input type="submit" value="Add Items">
+    </form>
+  </div>
+</body>
+
+</html>

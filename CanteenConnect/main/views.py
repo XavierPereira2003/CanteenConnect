@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import user_passes_test
-
+from .models import Menu
 # Create your views here.
 
 '''Tests Region'''
@@ -26,6 +26,9 @@ def login(request): #allows user to log into site is capable of diffrentiating b
     else:
         return render(request,'login.html')#Not sure what this is for
 
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
 
 @user_passes_test(student_check)#to only allow if user is student
 def student_home(request):
@@ -34,3 +37,7 @@ def student_home(request):
 @user_passes_test(chef_check)#to only allow if user is chef
 def chef_home(request):
     return render(request,'chef_home.html',{})
+
+@user_passes_test(chef_check)
+def chef_select(request):
+    return render(request,'chef_inserter.html',{})
