@@ -1,7 +1,221 @@
-{% extends 'base.html' %}
-{% block title %}Student Homepage{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html>
 
-    <h1>Logged Into Student's Home</h1>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link href="/static/all_bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Student Homepage</title>
+    <link rel="stylesheet" href="/static/main/css/studstyle.css" />
+    
+</head>
+
+<body>
+    <header>
+        <nav class="nav main-nav">
+            <ul>
+                <li class="size">CanteenConnect.</li>
+                <li style="float:right"><a class="active" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+        <h3 class="Welcome">Welcome Student</h3>
+    </header>
+
+    <div id="accordion">
+        <div class="card container">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        06\03\2023
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        07\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                        08\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
+                        09\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card container">
+            <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive"
+                        aria-expanded="false" aria-controls="collapseFive">
+                        10\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="card-header" id="headingSix">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix"
+                        aria-expanded="false" aria-controls="collapseSix">
+                        11\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="card-header" id="headingSeven">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven"
+                        aria-expanded="false" aria-controls="collapseSeven">
+                        12\03\2023
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            I will be attending
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="button" style="vertical-align:middle"><span>Submit</span></button>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/all_bootstrap/other_js/jquery-3.2.1.min.js"></script>
+    <script src="/static/all_bootstrap/other_js/popper.min.js"></script>
+    <script src="/static/all_bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
