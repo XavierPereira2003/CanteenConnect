@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import user_passes_test
 from .models import Menu
-
+from datetime import date
 
 #Testing
 def chef_check(user):
@@ -39,13 +39,18 @@ def logout(request):
 
 #Site Rendering Functions
 @user_passes_test(student_check)#to only allow if user is student
+#Student Homepage
 def student_home(request):
-    return render(request,'student_home.html',{})
+    Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
+    return render(request,'student_home.html',{"Data_Objects":Data_Object})
 
 @user_passes_test(chef_check)#to only allow if user is chef
 def chef_home(request):
-    return render(request,'chef_home.html',{})
+    Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
+    return render(request,'chef_home.html',{"Data_Objects":Data_Object})
 
 @user_passes_test(chef_check)
 def chef_select(request):
     return render(request,'chef_inserter.html',{})
+
+

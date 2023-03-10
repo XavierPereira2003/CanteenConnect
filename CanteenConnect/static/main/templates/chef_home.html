@@ -48,21 +48,9 @@
 
     {% for Day in Data_Objects%}
     <tr>
-      <td>{{Day}}</td>
-      <td>{{Day.Visitors_list.all.count}}</td>
+      <td>{{Day.Date}}</td>
+      <td>{{Day.Vistors_list.all.count}}</td>
       {% endfor %}
-      <!-- 
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    
-  </tr> -->
   </table>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
