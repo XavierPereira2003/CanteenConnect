@@ -39,12 +39,11 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
-                                {% for Day in Data_Objects%}
-                                    {% for items in Day.Course%}
-                                        <li>{{items}}</li>
-
-                                    {% endfor %}
-                                {% endfor %}
+                                <li>{{Day.item1}}</li>
+                                <li>{{Day.item2}}</li>
+                                <li>{{Day.item3}}</li>
+                                <li>{{Day.item4}}</li>
+                                <li>{{Day.item5}}</li>
                             </ul>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">

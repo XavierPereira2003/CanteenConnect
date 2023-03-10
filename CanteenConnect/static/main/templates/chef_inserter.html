@@ -37,24 +37,18 @@
   <div class="c">
     <h1 font="120" style="color:white">CREATE MENU FOR :</h1>
     <br>
-    <form action=C:\\Users\\MITHUN\\python\\helperrr.html>
+    {%if submitted%}
+        <p>Menu is added successfully</p>
+    {%else%}
+      <form action="" method="POST">
 
-      <input type="date" id="birthday" name="birthday">
-      <br>
+        {% csrf_token%}<!--Security Token-->
+        {{ form.as_p}}
+        
+        <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+    {%endif%}
     
-      <br>
-      <label style="color:white">Text box .1</label><br>
-      <input type="text" id="fname" name="fname"><br>
-      <label style="color:white">Text box .2</label><br>
-      <input type="text" id="fname" name="fname"><br>
-      <label style="color:white">Text box .3</label><br>
-      <input type="text" id="lname" name="lname"><br>
-      <label style="color:white">Text box .4</label><br>
-      <input type="text" id="lname" name="lname"><br>
-      <label style="color:white">Text box .5</label><br>
-      <input type="text" id="lname" name="lname"><br>
-      <input type="submit" value="Add Items">
-    </form>
   </div>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

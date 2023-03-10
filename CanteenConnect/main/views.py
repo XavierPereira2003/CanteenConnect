@@ -4,6 +4,10 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import user_passes_test
 from .models import Menu
 from datetime import date
+from .forms import Menu_form
+from django.http import HttpResponseRedirect
+
+
 
 #Testing
 def chef_check(user):
@@ -44,13 +48,27 @@ def student_home(request):
     Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
     return render(request,'student_home.html',{"Data_Objects":Data_Object})
 
+#Chef HomePage ie results page
 @user_passes_test(chef_check)#to only allow if user is chef
 def chef_home(request):
     Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
     return render(request,'chef_home.html',{"Data_Objects":Data_Object})
 
+
 @user_passes_test(chef_check)
 def chef_select(request):
-    return render(request,'chef_inserter.html',{})
+    submitted=False
+    if request.method=="POST":
+        form=Menu_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/chef/selection?submitted=True')
+            
+    else:
+        form=Menu_form
+        if 'submitted' in request.GET:
+            submitted=True
+             
+    return render(request,'chef_inserter.html',{'form':form,'submitted':submitted})
 
 
