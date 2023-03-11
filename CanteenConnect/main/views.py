@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test,login_required
 from .models import Menu
 from datetime import date
 from .forms import Menu_form
+
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 
 
 
@@ -71,4 +74,28 @@ def chef_select(request):
              
     return render(request,'chef_inserter.html',{'form':form,'submitted':submitted})
 
+@login_required(login_url='login')
+def attending(request, pk):
+    menu = Menu.objects.get(pk=pk)
+    is_attending = False
+    print(request.user)
+    for attendee in menu.Vistors_list.all():
+        if attendee == request.user:
+            is_attending = True
+            break
 
+    if not is_attending:
+        menu.Vistors_list.add(request.user)
+
+    if is_attending:
+        menu.Vistors_list.remove(request.user)
+
+   # next = request.POST.get('next', '/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required(login_url='login')
+@user_passes_test(chef_check)
+def delete(request, pk):
+    menu = Menu.objects.get(pk=pk)
+    menu.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

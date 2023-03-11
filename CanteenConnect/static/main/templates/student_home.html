@@ -24,20 +24,19 @@
         </nav>
         <h3 class="Welcome">Welcome Student</h3>
     </header>
-   
+    {% for Day in Data_Objects%}    
             <div id="accordion">
-                {% for Day in Data_Objects%} 
                 <div class="card container">
-                    <div class="card-header" id="heading{{ forloop.counter0 }}">
+                    <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ forloop.counter0 }}" aria-expanded="true"
-                                aria-controls="collapse{{ forloop.counter0 }}">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                aria-controls="collapseOne">
                                 {{Day.Date}}
                             </button>
                         </h5>
                     </div>
         
-                    <div id="collapse{{ forloop.counter0 }}" class="collapse show" aria-labelledby="heading{{ forloop.counter0 }}" data-parent="#accordion">
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
                                 <li>{{Day.item1}}</li>
@@ -47,8 +46,10 @@
                                 <li>{{Day.item5}}</li>
                             </ul>
                             <div class="form-check">
-                                I will be attending: 
-                                <input class="btn btn-primary" type="submit" value="Yes">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    I will be attending
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
             </div>
     
     </div>
-
+    <button class="button" style="vertical-align:middle"><span>Submit</span></button>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/static/all_bootstrap/other_js/jquery-3.2.1.min.js"></script>
