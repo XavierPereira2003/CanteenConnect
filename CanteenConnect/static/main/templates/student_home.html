@@ -1,3 +1,4 @@
+{% load auth_extras %}
 <!DOCTYPE html>
 <html style="overflow-y: scroll;">
 
@@ -11,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Student Homepage</title>
     <link rel="stylesheet" href="/static/main/css/studstyle.css" />
-    
+
 </head>
 
 <body>
@@ -23,43 +24,49 @@
             </ul>
         </nav>
         <h3 class="Welcome">Welcome Student</h3>
-    </header>  
-            <div id="accordion">
-                {% for Day in Data_Objects%}  
-                <div class="card container">
-                    <div class="card-header" id="heading{{ forloop.counter0 }}">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ forloop.counter0 }}" aria-expanded="true"
-                                aria-controls="collapse{{ forloop.counter0 }}">
-                                {{Day.Date}}
-                            </button>
-                        </h5>
-                    </div>
-        
-                    <div id="collapse{{ forloop.counter0 }}" class="collapse show" aria-labelledby="heading{{ forloop.counter0 }}" data-parent="#accordion">
-                        <div class="card-body">
-                            <ul>
-                                <li>{{Day.item1}}</li>
-                                <li>{{Day.item2}}</li>
-                                <li>{{Day.item3}}</li>
-                                <li>{{Day.item4}}</li>
-                                <li>{{Day.item5}}</li>
-                            </ul>
-                            <div class="form-check">
-                                <form method="POST" action="{% url 'attending' Day.pk %}">
-                                    {%csrf_token%}
-                                    <input type="hidden" name="next" value="{{ request.path }}">
-                                    <button type="submit" class="btn btn-success">I will be attending</button>
-                                    {{Day.Vistors_list.all.count}}
-                                </form>
-                            </div>
-                        </div>
+    </header>
+    <div id="accordion">
+        {% for Day in Data_Objects%}
+        <div class="card container">
+            <div class="card-header" id="heading{{ forloop.counter0 }}">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ forloop.counter0 }}"
+                        aria-expanded="true" aria-controls="collapse{{ forloop.counter0 }}">
+                        {{Day.Date}}
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapse{{ forloop.counter0 }}" class="collapse"
+                aria-labelledby="heading{{ forloop.counter0 }}" data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li>{{Day.item1}}</li>
+                        <li>{{Day.item2}}</li>
+                        <li>{{Day.item3}}</li>
+                        <li>{{Day.item4}}</li>
+                        <li>{{Day.item5}}</li>
+                    </ul>
+                    <div class="form-check">
+                        <form method="POST" action="{% url 'attending' Day.pk %}">
+                            {%csrf_token%}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            
+                            Vote Count: {{Day.Vistors_list.all.count}}
+                            {% if request.user|has_vote:Day.pk %}
+                            <p>You Have Voted</p>
+                            {% else %}
+                            <button type="submit" class="btn btn-success">I will be attending</button>
+                            {% endif %}
+                        </form>
                     </div>
                 </div>
-                {% endfor %}
-            
             </div>
-    
+        </div>
+        {% endfor %}
+
+    </div>
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
