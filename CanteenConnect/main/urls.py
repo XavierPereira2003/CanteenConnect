@@ -8,5 +8,5 @@ urlpatterns = [
     path('chef/selection', views.chef_select, name="home_c_s"),
     path('logout',views.logout, name="logout"),
     path('chef/<int:pk>/deletes',views.delete, name="deletes"),
-    path('student/<int:pk>/attending',views.attending,name="Attending"),
+    path('student/<int:pk>/attending',views.attending,name="attending"),
 ]

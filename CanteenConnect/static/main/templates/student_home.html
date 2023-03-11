@@ -46,10 +46,10 @@
                                 <li>{{Day.item5}}</li>
                             </ul>
                             <div class="form-check">
-                                <form method="POST" action="{% url 'Attending' Day.pk %}">
+                                <form method="POST" action="{% url 'attending' Day.pk %}">
                                     {%csrf_token%}
                                     <input type="hidden" name="next" value="{{ request.path }}">
-                                    <button type="button" class="btn btn-success">I will be attending</button>
+                                    <button type="submit" class="btn btn-success">I will be attending</button>
                                     {{Day.Vistors_list.all.count}}
                                 </form>
                             </div>

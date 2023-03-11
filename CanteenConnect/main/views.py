@@ -75,10 +75,10 @@ def chef_select(request):
     return render(request,'chef_inserter.html',{'form':form,'submitted':submitted})
 
 @login_required(login_url='login')
-def attending(request, pk, *args, **kwargs):
+def attending(request, pk):
     menu = Menu.objects.get(pk=pk)
     is_attending = False
-
+    print(request.user)
     for attendee in menu.Vistors_list.all():
         if attendee == request.user:
             is_attending = True
@@ -90,9 +90,11 @@ def attending(request, pk, *args, **kwargs):
     if is_attending:
         menu.Vistors_list.remove(request.user)
 
-    next = request.POST.get('next', '/')
-    return HttpResponseRedirect(next)
+   # next = request.POST.get('next', '/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+@login_required(login_url='login')
+@user_passes_test(chef_check)
 def delete(request, pk):
     menu = Menu.objects.get(pk=pk)
     menu.delete()
