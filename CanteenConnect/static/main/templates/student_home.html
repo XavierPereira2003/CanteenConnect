@@ -46,10 +46,12 @@
                                 <li>{{Day.item5}}</li>
                             </ul>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    I will be attending
-                                </label>
+                                <form method="POST" action="{% url 'Attending' Day.pk}">
+                                    {%csrf_token%}
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <button type="button" class="btn btn-success">I will be attending</button>
+                                    {{Day.Vistors_list.all.count}}
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -59,7 +61,6 @@
             </div>
     
     </div>
-    <button class="button" style="vertical-align:middle"><span>Submit</span></button>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/static/all_bootstrap/other_js/jquery-3.2.1.min.js"></script>
