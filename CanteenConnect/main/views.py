@@ -92,3 +92,8 @@ def attending(request, pk, *args, **kwargs):
 
     next = request.POST.get('next', '/')
     return HttpResponseRedirect(next)
+
+def delete(request, pk):
+    menu = Menu.objects.get(pk=pk)
+    menu.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

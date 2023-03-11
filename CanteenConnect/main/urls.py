@@ -7,6 +7,6 @@ urlpatterns = [
     path('chef/',views.chef_home,name="home_c"),
     path('chef/selection', views.chef_select, name="home_c_s"),
     path('logout',views.logout, name="logout"),
-
-    path('student/<int:pk>/attending',views.attending,name="Attending")
+    path('chef/<int:pk>/deletes',views.delete, name="deletes"),
+    path('student/<int:pk>/attending',views.attending,name="Attending"),
 ]

@@ -44,12 +44,19 @@
     <tr>
       <th>Date</th>
       <th>No. of students</th>
+      <th>Purge</th>
     </tr>
 
     {% for Day in Data_Objects%}
     <tr>
       <td>{{Day.Date}}</td>
       <td>{{Day.Vistors_list.all.count}}</td>
+      <form action="{% url 'deletes' Day.pk %}" method="POST">
+        {% csrf_token %}
+        <td>
+        <input class="btn btn-default btn-danger" type="submit" value="Delete"/>
+        </td>
+      </form>
       {% endfor %}
   </table>
 
