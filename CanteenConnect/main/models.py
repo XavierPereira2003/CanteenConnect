@@ -6,8 +6,7 @@ from django.contrib.auth.models import User
 
 class Menu(models.Model):
     """
-    This Model is for to register user if they are coming to canteen
-    to eat.
+    This Model is for to register meals set by canteen to eat.
     """
     Date=models.DateField(unique=True)
     Vistors_list=models.ManyToManyField(User,blank=True)

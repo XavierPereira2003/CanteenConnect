@@ -5,26 +5,22 @@ from django.contrib.auth.decorators import user_passes_test,login_required
 from .models import Menu
 from datetime import date
 from .forms import Menu_form
-
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 
 
 
-#Testing
-def chef_check(user):
-    '''To check if user is chef'''
+# Testing
+def chef_check(user):                                                                       # To check if user is chef
     return user.groups.filter(name='chef').exists()
-def student_check(user):
-    '''To check if user is student'''
+def student_check(user):                                                                    # To check if user is student
     return user.groups.filter(name='student').exists()
 
 
 
-#Functions 
-def login(request):
-    '''allows user to log into site is & capable of diffrentiating between chef and student'''
+# Functions 
+def login(request):                                                                         # Allows user to log into site is & capable of diffrentiating between chef and student
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'],password = request.POST['password'])
         if user is not None:
@@ -34,9 +30,9 @@ def login(request):
             return redirect('home_s')
         else:
             messages.error(request,'Username or Password Incorrect.')
-            return render (request,'login.html')#Redirects if error is present
+            return render (request,'login.html')                                            # Redirects if login error is present
     else:
-        return render(request,'login.html')#Not sure what this is for
+        return render(request,'login.html')                                                 # Renders the login form when the request method is not 'POST'
 
 def logout(request):
     auth.logout(request)
@@ -44,22 +40,23 @@ def logout(request):
 
 
 
-#Site Rendering Functions
-@user_passes_test(student_check)#to only allow if user is student
-#Student Homepage
-def student_home(request):
+# Site Rendering Functions
+@user_passes_test(student_check)                                                            # To only allow if user is student
+
+# Student Homepage
+def student_home(request):                                                                  # Allows the chef to select and save a menu using a form
     Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
     return render(request,'student_home.html',{"Data_Objects":Data_Object})
 
-#Chef HomePage ie results page
-@user_passes_test(chef_check)#to only allow if user is chef
-def chef_home(request):
+# Chef HomePage i.e. results page
+@user_passes_test(chef_check)                                                               # To only allow if user is chef
+def chef_home(request):                                                                     # Allows the chef to select and save a menu using a form
     Data_Object=Menu.objects.filter(Date__gte=str(date.today()))
     return render(request,'chef_home.html',{"Data_Objects":Data_Object})
 
 
 @user_passes_test(chef_check)
-def chef_select(request):
+def chef_select(request):                                                                   # Allows the chef to select and save a menu using a form
     submitted=False
     if request.method=="POST":
         form=Menu_form(request.POST)
@@ -75,7 +72,7 @@ def chef_select(request):
     return render(request,'chef_inserter.html',{'form':form,'submitted':submitted})
 
 @login_required(login_url='login')
-def attending(request, pk):
+def attending(request, pk):                                                                  # Handles the attendance functionality, allowing users to mark their attendance for a specific menu item
     menu = Menu.objects.get(pk=pk)
     is_attending = False
     print(request.user)
@@ -95,7 +92,7 @@ def attending(request, pk):
 
 @login_required(login_url='login')
 @user_passes_test(chef_check)
-def delete(request, pk):
+def delete(request, pk):                                                                      # Deletes a menu object
     menu = Menu.objects.get(pk=pk)
     menu.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
